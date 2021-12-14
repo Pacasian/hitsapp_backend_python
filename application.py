@@ -50,12 +50,12 @@ def hello_world():  # put applicationl's code here
     username = "abcdef.xyz@gmail.com"
     password = "#Abc1234"
     
-    COGNITO_USER_CLIENT_ID = "1okk820vdgp77t26dle04taa9n"
+    COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
     cog.sign_up(
     ClientId=COGNITO_USER_CLIENT_ID,
     Username=username,
     Password=password,
-    UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"mob_number","Value":"+123456789012"}],
+    UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"phone_number","Value":"+1234567890"}],
     )
     return 'Hello user'
 
