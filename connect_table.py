@@ -8,7 +8,7 @@ dynamoDB = boto3.resource("dynamodb", region_name='us-east-1')
 
 cogclient = boto3.client("cognito-idp", region_name="us-east-1")
 
-snsclient = boto3.client('sns',region_name="us-east-1" )
+snsclient = boto3.client("sns", region_name="us-east-1" )
 
 # dynamoDB = boto3.resource("dynamodb", region_name='us-east-1')
 
