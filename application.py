@@ -47,7 +47,7 @@ def post_login():
 
 @application.route('/')
 def hello_world():  # put applicationl's code here
-    username = "abcdef.xyz@gmail.com"
+    username = "abcd.xyz@gmail.com"
     password = "#Abc1234"
     
     COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
