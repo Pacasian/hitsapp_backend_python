@@ -60,7 +60,7 @@ def post_snsreg():
             return {"success": "false"}
 
 # SNSVerify section
-@application.route('/api/v1/snsreg', methods=['POST', 'GET', 'OPTIONS'])
+@application.route('/api/v1/snsver', methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(supports_credentials=True)
 def post_snsver():
     if (request.method == 'POST'):
