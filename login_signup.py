@@ -13,7 +13,7 @@ def login(usr, pwd):
     try:
         response = table.get_item(
             Key={
-                "username": usr,
+                "userName": usr,
                 "password": pwd
 
             }
@@ -25,13 +25,13 @@ def login(usr, pwd):
 
 
 
-def signUp(usr,pwd,name,mail):
+def signUp(usr,pwd,name,mob):
     try:
         table.put_item(Item={
-            "username": usr,
-            "password": pwd,
+            "userName": usr,
             "name": name,
-            "email": mail,
+            "mob_number": mob,
+            "password": pwd,
         })
         return {"success": "true"}
     except ClientError as e:

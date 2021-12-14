@@ -17,7 +17,7 @@ CORS(application, support_credentials=True)
 def post():
     if (request.method == 'POST'):
         args = request.get_json()
-        result = login_signup.signUp(args['username'], args['password'], args['name'], args['email'])
+        result = login_signup.signUp(args['username'], args['password'], args['name'], args['mob'])
         print(result)
         if result != False:
             jsonData = jsonify(result)
@@ -45,7 +45,7 @@ def post_login():
 
 @application.route('/')
 def hello_world():  # put applicationl's code here
-    return 'Hello sumith'
+    return 'Hello user'
 
 
 if __name__ == '__main__':
