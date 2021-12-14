@@ -9,7 +9,9 @@ table= connect_table.table1
 cog = connect_table.cogclient
 snsmsg = connect_table.snsclient
 
+
 COGNITO_USER_CLIENT_ID = "riiugb6k7m01m734ctvt420vv"
+topic_arn = "arn:aws:sns:us-east-1:910618930375:sendMsg"
 
 # Login Block
 def login(usr, pwd):
@@ -100,5 +102,21 @@ def mobver(mob,code):
         print(e.response['Error']['Message'])
         return {"success": "false"}
 
+def msgsub(mob):
+    try:
+        snsmsg.subscribe(
+        TopicArn=topic_arn,
+        Protocol='sms',
+        Endpoint=mob)
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
         
-
+def msgpub(msg):
+    try:
+        snsmsg.publish(Message=msg, TopicArn=topic_arn)
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
