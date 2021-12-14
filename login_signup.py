@@ -40,7 +40,7 @@ def login(usr, pwd):
 
         key={
             "username": usr,
-            "name": pwd
+            "name": nam
         }       
         upd={
             "token_val": {'Value' : accTo}
