@@ -7,6 +7,8 @@ from awscli.errorhandler import ClientError
 
 table= connect_table.table1
 cog = connect_table.cogclient
+snsmsg = connect_table.snsclient
+
 COGNITO_USER_CLIENT_ID = "riiugb6k7m01m734ctvt420vv"
 
 # Login Block
@@ -27,11 +29,21 @@ def login(usr, pwd):
         )
         accTo = response["AuthenticationResult"]["AccessToken"]
         response = cog.get_user(AccessToken=accTo)
-        res = json.loads(json.dumps(response))
-        # print(res['Username'])
+        # if (response)
+        # res = json.loads(json.dumps(response))
+
         # for i in range(0,len(res['UserAttributes'])):
-        #     if(res['UserAttributes'][i]['Name']=="phone_number" or res['UserAttributes'][i]['Name']=="name"):
-        #         print(res['UserAttributes'][i]['Value'])
+        #     if(res['UserAttributes'][i]['Name']=="name") :
+        #         nam = res['UserAttributes'][i]['Value']
+        #     if(res['UserAttributes'][i]['Name']=="custom:mob_number"):
+        #         mob = res['UserAttributes'][i]['Value']
+
+        # table.put_item(Item={
+        #     "userName": usr,
+        #     "password": pwd,
+        #     "name": nam,
+        #     "mob_number": mob,
+        # })        
 
         return json.loads(json.dumps(response))
     except ClientError as e:
@@ -57,6 +69,18 @@ def signUp(usr,pwd,name,mob):
             UserAttributes=[{"Name": "name", "Value": name},{"Name":"custom:mob_number","Value":mob}],
         )
 
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
+
+
+def mobreg(mob):
+    try:
+        snsmsg.create_sms_sandbox_phone_number(
+        PhoneNumber=mob,
+        LanguageCode='en-US'
+        )
         return {"success": "true"}
     except ClientError as e:
         print(e.response['Error']['Message'])
