@@ -43,7 +43,7 @@ def login(usr, pwd):
             "name": pwd
         }       
         upd={
-            "token_val": accTo
+            "token_val": {'Value' : accTo}
         }
 
         table.update_item(Key=key, AttributeUpdates=upd)
