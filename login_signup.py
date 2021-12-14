@@ -34,12 +34,12 @@ def signUp(usr,pwd,name,mob):
         #     "mob_number": mob,
         # })
 
-        COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
+        COGNITO_USER_CLIENT_ID = "1okk820vdgp77t26dle04taa9n"
         cog.sign_up(
             ClientId=COGNITO_USER_CLIENT_ID,
             Username=usr,
             Password=pwd,
-            UserAttributes=[{"Name": "name", "Value": name},{"Name":"phone_number","Value":mob}],
+            UserAttributes=[{"Name": "name", "Value": name},{"Name":"custom:mob_number","Value":mob}],
         )
 
         return {"success": "true"}
