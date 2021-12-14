@@ -45,6 +45,21 @@ def post_login():
             return {"success": "false"}
 
 
+# SNSReg section
+@application.route('/api/v1/snsreg', methods=['POST', 'GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def post():
+    if (request.method == 'POST'):
+        args = request.get_json()
+        result = login_signup.mobreg(args['mob'])
+        print(result)
+        if result != False:
+            jsonData = jsonify(result)
+            return jsonData
+        else:
+            return {"success": "false"}
+
+
 @application.route('/')
 def hello_world():  # put applicationl's code here
     # username = "abcd.xyz@gmail.com"
