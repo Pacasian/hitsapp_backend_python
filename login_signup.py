@@ -14,7 +14,7 @@ def login(usr, pwd):
         response = table.get_item(
             Key={
                 "userName": usr,
-                "password": pwd
+                "name": pwd
 
             }
         )
