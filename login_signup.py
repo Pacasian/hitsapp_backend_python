@@ -29,9 +29,9 @@ def signUp(usr,pwd,name,mob):
     try:
         table.put_item(Item={
             "userName": usr,
+            "password": pwd,
             "name": name,
             "mob_number": mob,
-            "password": pwd,
         })
         return {"success": "true"}
     except ClientError as e:
