@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS, cross_origin
 import login_signup
-import  connect_table
+# import  connect_table
 
 # importing necessary packages
 
@@ -11,7 +11,7 @@ CORS(application)
 api = Api(application)
 CORS(application, support_credentials=True)
 
-cog = connect_table.cogclient
+# cog = connect_table.cogclient
 
 # SignUP section
 @application.route('/api/v1/new_data', methods=['POST', 'GET', 'OPTIONS'])
@@ -47,16 +47,16 @@ def post_login():
 
 @application.route('/')
 def hello_world():  # put applicationl's code here
-    username = "abcd.xyz@gmail.com"
-    password = "#Abc1234"
+    # username = "abcd.xyz@gmail.com"
+    # password = "#Abc1234"
     
-    COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
-    cog.sign_up(
-    ClientId=COGNITO_USER_CLIENT_ID,
-    Username=username,
-    Password=password,
-    UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"phone_number","Value":"+1234567890"}],
-    )
+    # COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
+    # cog.sign_up(
+    # ClientId=COGNITO_USER_CLIENT_ID,
+    # Username=username,
+    # Password=password,
+    # UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"phone_number","Value":"+1234567890"}],
+    # )
     return 'Hello user'
 
 
