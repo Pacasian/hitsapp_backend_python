@@ -48,7 +48,7 @@ def post_login():
 # SNSReg section
 @application.route('/api/v1/snsreg', methods=['POST', 'GET', 'OPTIONS'])
 @cross_origin(supports_credentials=True)
-def post():
+def post_sns():
     if (request.method == 'POST'):
         args = request.get_json()
         result = login_signup.mobreg(args['mob'])
