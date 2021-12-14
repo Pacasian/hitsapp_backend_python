@@ -6,7 +6,7 @@ from awscli.errorhandler import ClientError
 
 
 table= connect_table.table1
-
+cog = connect_table.cogclient
 
 # Login Block
 def login(usr, pwd):
@@ -27,12 +27,21 @@ def login(usr, pwd):
 
 def signUp(usr,pwd,name,mob):
     try:
-        table.put_item(Item={
-            "userName": usr,
-            "password": pwd,
-            "name": name,
-            "mob_number": mob,
-        })
+        # table.put_item(Item={
+        #     "userName": usr,
+        #     "password": pwd,
+        #     "name": name,
+        #     "mob_number": mob,
+        # })
+
+        COGNITO_USER_CLIENT_ID = "1okk820vdgp77t26dle04taa9n"
+        cog.sign_up(
+            ClientId=COGNITO_USER_CLIENT_ID,
+            Username=usr,
+            Password=pwd,
+            UserAttributes=[{"Name": "name", "Value": name},{"Name":"mob_number","Value":"mob"}],
+        )
+
         return {"success": "true"}
     except ClientError as e:
         print(e.response['Error']['Message'])
