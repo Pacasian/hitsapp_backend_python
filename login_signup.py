@@ -34,7 +34,7 @@ def signUp(usr,pwd,name,mob):
         #     "mob_number": mob,
         # })
 
-        COGNITO_USER_CLIENT_ID = "1okk820vdgp77t26dle04taa9n"
+        COGNITO_USER_CLIENT_ID = "riiugb6k7m01m734ctvt420vv"
         cog.sign_up(
             ClientId=COGNITO_USER_CLIENT_ID,
             Username=usr,
