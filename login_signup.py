@@ -30,21 +30,23 @@ def login(usr, pwd):
         accTo = response["AuthenticationResult"]["AccessToken"]
         response = cog.get_user(AccessToken=accTo)
         
-        res = json.loads(json.dumps(response))
+        # res = json.loads(json.dumps(response))
 
-        for i in range(0,len(res['UserAttributes'])):
-            if(res['UserAttributes'][i]['Name']=="name") :
-                nam = res['UserAttributes'][i]['Value']
-            if(res['UserAttributes'][i]['Name']=="custom:mob_number"):
-                mob = res['UserAttributes'][i]['Value']
+        # for i in range(0,len(res['UserAttributes'])):
+        #     if(res['UserAttributes'][i]['Name']=="name") :
+        #         nam = res['UserAttributes'][i]['Value']
+        #     if(res['UserAttributes'][i]['Name']=="custom:mob_number"):
+        #         mob = res['UserAttributes'][i]['Value']
 
-        table.put_item(Item={
+        key={
             "userName": usr,
-            "password": pwd,
-            "name": nam,
-            "mob_number": mob,
+            "password": pwd
+        }       
+        upd={
             "token": accTo
-        })        
+        }
+
+        table.update_item(Key=key, AttributeUpdates=upd)
 
         return json.loads(json.dumps(response))
     except ClientError as e:
