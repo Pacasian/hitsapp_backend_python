@@ -89,5 +89,16 @@ def mobreg(mob):
         print(e.response['Error']['Message'])
         return {"success": "false"}
 
+def mobver(mob,code):
+    try:
+        snsmsg.verify_sms_sandbox_phone_number(
+        PhoneNumber=mob,
+        OneTimePassword=code
+        )
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
+
         
 
