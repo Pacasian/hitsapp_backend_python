@@ -30,20 +30,20 @@ def login(usr, pwd):
         accTo = response["AuthenticationResult"]["AccessToken"]
         response = cog.get_user(AccessToken=accTo)
         
-        # res = json.loads(json.dumps(response))
+        res = json.loads(json.dumps(response))
 
-        # for i in range(0,len(res['UserAttributes'])):
-        #     if(res['UserAttributes'][i]['Name']=="name") :
-        #         nam = res['UserAttributes'][i]['Value']
+        for i in range(0,len(res['UserAttributes'])):
+            if(res['UserAttributes'][i]['Name']=="name") :
+                nam = res['UserAttributes'][i]['Value']
         #     if(res['UserAttributes'][i]['Name']=="custom:mob_number"):
         #         mob = res['UserAttributes'][i]['Value']
 
         key={
-            "userName": usr,
-            "password": pwd
+            "username": usr,
+            "name": pwd
         }       
         upd={
-            "token": accTo
+            "token_val": accTo
         }
 
         table.update_item(Key=key, AttributeUpdates=upd)

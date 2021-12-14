@@ -14,5 +14,5 @@ snsclient = boto3.client("sns", region_name="us-east-1" )
 
 
 
-table1 = dynamoDB.Table('userTable')
+table1 = dynamoDB.Table('userTable1')
 table2 = dynamoDB.Table('recipeTable')
