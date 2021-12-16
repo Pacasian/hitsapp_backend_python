@@ -91,19 +91,28 @@ def post_snsmsg():
 
 
 
-@application.route('/')
-def hello_world():  # put applicationl's code here
-    # username = "abcd.xyz@gmail.com"
-    # password = "#Abc1234"
+# @application.route('/')
+# def hello_world():  # put applicationl's code here
+#     # username = "abcd.xyz@gmail.com"
+#     # password = "#Abc1234"
     
-    # COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
-    # cog.sign_up(
-    # ClientId=COGNITO_USER_CLIENT_ID,
-    # Username=username,
-    # Password=password,
-    # UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"phone_number","Value":"+1234567890"}],
-    # )
-    return 'Hello user'
+#     # COGNITO_USER_CLIENT_ID = "722d9o00ns6alnb92n37g1imh5"
+#     # cog.sign_up(
+#     # ClientId=COGNITO_USER_CLIENT_ID,
+#     # Username=username,
+#     # Password=password,
+#     # UserAttributes=[{"Name": "name", "Value": "shree"},{"Name":"phone_number","Value":"+1234567890"}],
+#     # )
+#     return 'Hello user'
+
+def get_content():
+    return "It works!", 200
+
+@application.route('/')
+def home():
+    content, status_code = get_content()
+    headers = {'Access-Control-Allow-Origin': '*'}
+    return content, status_code, headers
 
 
 if __name__ == '__main__':
