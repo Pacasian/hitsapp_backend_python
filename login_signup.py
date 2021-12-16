@@ -10,19 +10,11 @@ cog = connect_table.cogclient
 snsmsg = connect_table.snsclient
 
 
-COGNITO_USER_CLIENT_ID = "riiugb6k7m01m734ctvt420vv"
-topic_arn = "arn:aws:sns:us-east-1:910618930375:sendMsg"
+COGNITO_USER_CLIENT_ID = "tl43e6vclm099jo71hk76j3om"
 
 # Login Block
 def login(usr, pwd):
     try:
-        # response = table.get_item(
-        #     Key={
-        #         "userName": usr,
-        #         "password": pwd
-
-        #     }
-        # )
 
         response = cog.initiate_auth(
         ClientId=COGNITO_USER_CLIENT_ID,
@@ -37,15 +29,12 @@ def login(usr, pwd):
         for i in range(0,len(res['UserAttributes'])):
             if(res['UserAttributes'][i]['Name']=="name") :
                 nam = res['UserAttributes'][i]['Value']
-        #     if(res['UserAttributes'][i]['Name']=="custom:mob_number"):
-        #         mob = res['UserAttributes'][i]['Value']
-
         key={
             "username": usr,
             "name": nam
         }       
         upd={
-            "token_val": {'Value' : accTo}
+            "tkn": {'Value' : accTo}
         }
 
         table.update_item(Key=key, AttributeUpdates=upd)
@@ -59,14 +48,6 @@ def login(usr, pwd):
 
 def signUp(usr,pwd,name,mob):
     try:
-        # table.put_item(Item={
-        #     "userName": usr,
-        #     "password": pwd,
-        #     "name": name,
-        #     "mob_number": mob,
-        # })
-
-        
         cog.sign_up(
             ClientId=COGNITO_USER_CLIENT_ID,
             Username=usr,
@@ -102,20 +83,12 @@ def mobver(mob,code):
         print(e.response['Error']['Message'])
         return {"success": "false"}
 
-def msgsub(mob):
-    try:
-        snsmsg.subscribe(
-        TopicArn=topic_arn,
-        Protocol='sms',
-        Endpoint=mob)
-        return {"success": "true"}
-    except ClientError as e:
-        print(e.response['Error']['Message'])
-        return {"success": "false"}
         
-def msgpub(msg):
+def msgpub(mob,msg):
     try:
-        snsmsg.publish(Message=msg, TopicArn=topic_arn)
+        snsmsg.publish(
+        PhoneNumber=mob,
+        Message=msg)
         return {"success": "true"}
     except ClientError as e:
         print(e.response['Error']['Message'])
