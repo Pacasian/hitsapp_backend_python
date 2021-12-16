@@ -11,7 +11,7 @@ snsmsg = connect_table.snsclient
 
 
 COGNITO_USER_CLIENT_ID = "riiugb6k7m01m734ctvt420vv"
-topic_arn = "arn:aws:sns:us-east-1:910618930375:sendMsg"
+topic_arn = "arn:aws:sns:us-east-1:273304503802:pubMsg"
 
 # Login Block
 def login(usr, pwd):
