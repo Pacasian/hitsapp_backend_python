@@ -65,11 +65,12 @@ def post_snsreg():
 def post_snsver():
     if (request.method == 'POST'):
         args = request.get_json()
-        result = login_signup.mobver(args['mob'],args['code'])
+        result = login_signup.msgsub(args['mob'])
+        # result = login_signup.mobver(args['mob'],args['code'])
         print(result)
         if result != False:
-            result1 = login_signup.msgsub(args['mob'])
-            jsonData = jsonify(result1)
+            # result1 = login_signup.msgsub(args['mob'])
+            jsonData = jsonify(result)
             return jsonData
         else:
             return {"success": "false"}
