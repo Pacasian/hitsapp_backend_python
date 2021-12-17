@@ -1,6 +1,6 @@
 import decimal
 import json
-
+import flutter_icon_search
 
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
